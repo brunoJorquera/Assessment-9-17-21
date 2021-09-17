@@ -29,6 +29,7 @@ app.get('/api/fortune', (req,res) => {
   "Look both ways before crossing the street, it might save you!"
 ];
 
+// console.log('I work')
 let randomIndex = Math.floor(Math.random() * fortunes.length);
 let randomFortune = fortunes[randomIndex]
 

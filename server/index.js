@@ -43,8 +43,8 @@ app.get('/api/cards', (req,res) => {
   res.status(200).send(cards)
 })
 // app.delete('/api/cards/:id', (req,res) => {
-//   const {id} = req.params
-//   let index = cards.findIndex(elem => elem.id === +id)
+//   const {phrase} = req.params
+//   let index = cards.findIndex(elem => elem.phrase === +phrase)
 //   cards.splice(index, 1)
 //   res.status(200).send(cards)
 // })

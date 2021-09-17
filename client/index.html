@@ -17,6 +17,7 @@
           <input type="text" id="simpleOne" placeholder="Watch what happens">
           <button>click</button>
         </form>
+        <p>click your new phrase to delete!</p>
       </div>
       <!-- <div id="threeFeats">
           <form>
@@ -77,10 +78,15 @@
       function createRandomCard(card) {
         const randomCard = document.createElement('div')
         randomCard.classList.add('random-card')
-
-        randomCard.innerHTML = `<h3>${card.phrase}</h3>`
+        randomCard.addEventListener('click', deletePhrase)
+        randomCard.innerHTML = `<h3>${card.phrase}</h3>
+        `
 
         cardContainer.appendChild(randomCard)
+      }
+
+      function deletePhrase (e){
+        e.target.remove();
       }
 
       function displayCards(arr) {

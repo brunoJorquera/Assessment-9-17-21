@@ -1,8 +1,10 @@
 const express = require("express");
 const cors = require("cors");
+// const cards = []
 
 const app = express();
 
+// let globalId = 1
 
 app.use(cors());
 
@@ -36,5 +38,49 @@ let randomFortune = fortunes[randomIndex]
 res.status(200).send(randomFortune)
 
 });
+
+// app.get('/api/cards', (req,res) => {
+//   res.status(200).send(cards)
+// })
+// app.delete('/api/cards/:id', (req,res) => {
+//   const {id} = req.params
+//   let index = cards.findIndex(elem => elem.id === +id)
+//   cards.splice(index, 1)
+//   res.status(200).send(cards)
+// })
+// app.post('/api/cards', (req,res) => {
+//   const {title, cool, imageURL} = req.body
+//   let newCard = {
+//     id: globalId,
+//     title,
+//     cool: +cool,
+//     imageURL
+//   }
+//   if(!title || !cool || !imageURL){
+//     return res.status(400).send('Missing field(s)')
+//   } else{
+//     cards.push(newCard)
+//     globalId++
+//     return res.status(200).send(cards)
+//   }
+// })
+// app.put('/api/cards/:id', (req,res) => {
+//   const {id} = req.params
+//   const {type} = req.body
+//   let index = cards.findIndex(elem => elem.id === +id)
+//   if(cards[index].cool === 10 && type === 'plus'){
+//     res.status(400).send('is it really cooler than 10?')
+//   } else if(cards[index].cool === 0 && type === 'minus'){
+//     res.status(400).send('nothing is more lame than zero!')
+//   } else if (type === 'plus'){
+//     cards[index].cool++
+//     res.status(200).send(cards)
+//   } else if (type === 'minus'){
+//     cards[index].cool--
+//     res.status(200).send(cards)
+//   } else {
+//     res.status(400)
+//   }
+// })
 
 app.listen(4000, () => console.log("Server running on 4000"));

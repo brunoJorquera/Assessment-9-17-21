@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-// const cards = []
+const cards = []
 
 const app = express();
 
@@ -39,31 +39,27 @@ res.status(200).send(randomFortune)
 
 });
 
-// app.get('/api/cards', (req,res) => {
-//   res.status(200).send(cards)
-// })
+app.get('/api/cards', (req,res) => {
+  res.status(200).send(cards)
+})
 // app.delete('/api/cards/:id', (req,res) => {
 //   const {id} = req.params
 //   let index = cards.findIndex(elem => elem.id === +id)
 //   cards.splice(index, 1)
 //   res.status(200).send(cards)
 // })
-// app.post('/api/cards', (req,res) => {
-//   const {title, cool, imageURL} = req.body
-//   let newCard = {
-//     id: globalId,
-//     title,
-//     cool: +cool,
-//     imageURL
-//   }
-//   if(!title || !cool || !imageURL){
-//     return res.status(400).send('Missing field(s)')
-//   } else{
-//     cards.push(newCard)
-//     globalId++
-//     return res.status(200).send(cards)
-//   }
-// })
+app.post('/api/cards', (req,res) => {
+  const {phrase} = req.body
+  let newCard = {
+    phrase,
+  }
+  if(!phrase){
+    return res.status(400).send('Missing field')
+  } else{
+    cards.push(newCard)
+    return res.status(200).send(cards)
+  }
+})
 // app.put('/api/cards/:id', (req,res) => {
 //   const {id} = req.params
 //   const {type} = req.body

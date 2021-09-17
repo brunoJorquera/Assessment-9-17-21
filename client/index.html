@@ -14,6 +14,7 @@
       </div>
       <div>
         <button id="featureThree">Advice</button>
+        <button id="rouletteBtn">Number roulette</button>
       </div>
       <div>
         <form>
@@ -55,6 +56,14 @@
       };
       document.getElementById("featureThree").onclick = function (){
         axios.get("http://localhost:4000/api/advice/")
+            .then(function (response){
+              const data = response.data;
+              alert(data);
+            });
+      };
+      
+      document.getElementById("rouletteBtn").onclick = function (){
+        axios.get("http://localhost:4000/api/roulette/")
             .then(function (response){
               const data = response.data;
               alert(data);

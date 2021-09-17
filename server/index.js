@@ -47,11 +47,20 @@ app.get('/api/advice', (req,res) => {
   "Practice coding outside of class more often!"
 ];
 
-// console.log('I work')
 let randomIndex = Math.floor(Math.random() * advices.length);
 let randomAdvice = advices[randomIndex]
 
 res.status(200).send(randomAdvice)
+
+});
+
+app.get('/api/roulette', (req,res) => {
+  const roulette = ["One","Two","Three","Four","Five"];
+
+let randomIndex = Math.floor(Math.random() * roulette.length);
+let randomNum = roulette[randomIndex]
+
+res.status(200).send(randomNum)
 
 });
 

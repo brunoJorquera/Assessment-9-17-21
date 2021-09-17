@@ -39,15 +39,31 @@ res.status(200).send(randomFortune)
 
 });
 
+app.get('/api/advice', (req,res) => {
+  const advices = ["Code one thing at a time.",
+  "Make a path for your goals and start.",
+  "Start using a planner!",
+  "When someone is seeking 'advice', ask them if they truly want advice or someone to talk to.",
+  "Practice coding outside of class more often!"
+];
+
+// console.log('I work')
+let randomIndex = Math.floor(Math.random() * advices.length);
+let randomAdvice = advices[randomIndex]
+
+res.status(200).send(randomAdvice)
+
+});
+
 app.get('/api/cards', (req,res) => {
   res.status(200).send(cards)
 })
-// app.delete('/api/cards/:id', (req,res) => {
-//   const {phrase} = req.params
-//   let index = cards.findIndex(elem => elem.phrase === +phrase)
-//   cards.splice(index, 1)
-//   res.status(200).send(cards)
-// })
+app.delete('/api/cards/:id', (req,res) => {
+  const {phrase} = req.params
+  let index = cards.findIndex(elem => elem.phrase === +phrase)
+  cards.splice(index, 1)
+  res.status(200).send(cards)
+})
 app.post('/api/cards', (req,res) => {
   const {phrase} = req.body
   let newCard = {
@@ -60,23 +76,5 @@ app.post('/api/cards', (req,res) => {
     return res.status(200).send(cards)
   }
 })
-// app.put('/api/cards/:id', (req,res) => {
-//   const {id} = req.params
-//   const {type} = req.body
-//   let index = cards.findIndex(elem => elem.id === +id)
-//   if(cards[index].cool === 10 && type === 'plus'){
-//     res.status(400).send('is it really cooler than 10?')
-//   } else if(cards[index].cool === 0 && type === 'minus'){
-//     res.status(400).send('nothing is more lame than zero!')
-//   } else if (type === 'plus'){
-//     cards[index].cool++
-//     res.status(200).send(cards)
-//   } else if (type === 'minus'){
-//     cards[index].cool--
-//     res.status(200).send(cards)
-//   } else {
-//     res.status(400)
-//   }
-// })
 
 app.listen(4000, () => console.log("Server running on 4000"));

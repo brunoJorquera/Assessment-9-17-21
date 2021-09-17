@@ -13,20 +13,16 @@
         <button id="fortuneButton">Fortune?</button>
       </div>
       <div>
+        <button id="featureThree">Advice</button>
+      </div>
+      <div>
         <form>
-          <input type="text" id="simpleOne" placeholder="Watch what happens">
+          <input type="text" id="simpleOne" placeholder="Write a phrase!">
           <button>click</button>
         </form>
         <p>click your new phrase to delete!</p>
       </div>
-      <!-- <div id="threeFeats">
-          <form>
-            <input type="text" id="inputOne" placeholder="Card name"/>
-            <input type="text" id="inputTwo" placeholder="Cool rating 1-10"/>
-            <input type="text" id="inputThree" placeholder="Image goes here"/>
-              <button>Add</button>
-          </form>
-      </div> -->
+
       <section id="card-container"></section>
       
     </main>
@@ -42,9 +38,6 @@
 
       const getAllCards = () => axios.get(baseURL).then(cardsCallBack).catch(errCallBack)
       const createCard = body => axios.post(baseURL, body).then(cardsCallBack).catch(errCallBack)
-      // const deleteCard = id => axios.delete(`${baseURL}/${id}`, {type}).then(cardsCallBack).catch(errCallBack)
-      // const updateCard = (id, type) => axios.put(`${baseURL}/${id}`, {type}).then(cardsCallBack).catch(errCallBack)
-
 
       document.getElementById("complimentButton").onclick = function () {
         axios.get("http://localhost:4000/api/compliment/")
@@ -55,6 +48,13 @@
       };
       document.getElementById("fortuneButton").onclick = function (){
         axios.get("http://localhost:4000/api/fortune/")
+            .then(function (response){
+              const data = response.data;
+              alert(data);
+            });
+      };
+      document.getElementById("featureThree").onclick = function (){
+        axios.get("http://localhost:4000/api/advice/")
             .then(function (response){
               const data = response.data;
               alert(data);
@@ -80,6 +80,7 @@
         randomCard.classList.add('random-card')
         randomCard.addEventListener('click', deletePhrase)
         randomCard.innerHTML = `<h3>${card.phrase}</h3>
+        <button id="deletePls">delete</button>
         `
 
         cardContainer.appendChild(randomCard)

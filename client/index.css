@@ -1,0 +1,16 @@
+body{
+    background-color: darkgrey;
+    color:white;
+}
+
+button{
+    width: 300px;
+    display: block;
+    color:black;
+    background-color: white;
+}
+
+form{
+    display: flex;
+    justify-content: inline;
+}

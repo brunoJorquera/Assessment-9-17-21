@@ -2,17 +2,35 @@
 <html>
   <head>
     <title>Back End Assessment</title>
+    <link rel='stylesheet' href="index.css" />
   </head>
   <body class="container">
     <header>
       <h1> I am an assessment!</h1>
     </header>
+    <input type="color" id="color-picker"/>
     <main>
       <div id="fancyBtns">
         <button id="complimentButton">Get a compliment</button>
-        <button id="fortuneButton">Fortune?</button>
       </div>
-      <div>
+      <button id="fortuneBtn">Fortune?</button>
+
+      <form id="add-fortune-form">
+        <input type='text' id="fortune-input" />
+        <button type='submit' id="add-fortune-btn">ADD FORTUNE</button>
+      </form>
+
+      <select id="num-selector">
+        <options value='1'>1</options>
+        <options value='2'>2</options>
+        <options value='3'>3</options>
+        <options value='4'>4</options>
+        <options value='5'>5</options>
+      </select>
+
+      <section id="fortuneDisplay">
+      </section>
+      <!-- <div>
         <button id="featureThree">Advice</button>
         <button id="rouletteBtn">Number roulette</button>
       </div>
@@ -22,91 +40,12 @@
           <button>click</button>
         </form>
         <p>click your new phrase to delete!</p>
-      </div>
+      </div> -->
 
       <section id="card-container"></section>
       
     </main>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script>
-      const cardContainer = document.querySelector('#card-container')
-      const form = document.querySelector('form')
-
-      const baseURL = 'http://localhost:4000/api/cards'
-
-      const cardsCallBack = ({ data: cards }) => displayCards(cards)
-      const errCallBack = err => console.log(err)
-
-      const getAllCards = () => axios.get(baseURL).then(cardsCallBack).catch(errCallBack)
-      const createCard = body => axios.post(baseURL, body).then(cardsCallBack).catch(errCallBack)
-
-      document.getElementById("complimentButton").onclick = function () {
-        axios.get("http://localhost:4000/api/compliment/")
-            .then(function (response) {
-              const data = response.data;
-              alert(data);
-            });
-      };
-      document.getElementById("fortuneButton").onclick = function (){
-        axios.get("http://localhost:4000/api/fortune/")
-            .then(function (response){
-              const data = response.data;
-              alert(data);
-            });
-      };
-      document.getElementById("featureThree").onclick = function (){
-        axios.get("http://localhost:4000/api/advice/")
-            .then(function (response){
-              const data = response.data;
-              alert(data);
-            });
-      };
-      
-      document.getElementById("rouletteBtn").onclick = function (){
-        axios.get("http://localhost:4000/api/roulette/")
-            .then(function (response){
-              const data = response.data;
-              alert(data);
-            });
-      };
-
-      function submitHandler(e){
-        e.preventDefault()
-
-        let phrase = document.querySelector('#simpleOne')
-
-        let bodyObj = {
-          phrase: phrase.value
-        }
-
-        createCard(bodyObj)
-
-        phrase.value = ''
-      }
-
-      function createRandomCard(card) {
-        const randomCard = document.createElement('div')
-        randomCard.classList.add('random-card')
-        randomCard.addEventListener('click', deletePhrase)
-        randomCard.innerHTML = `<h3>${card.phrase}</h3>
-        <button id="deletePls">delete</button>
-        `
-
-        cardContainer.appendChild(randomCard)
-      }
-
-      function deletePhrase (e){
-        e.target.remove();
-      }
-
-      function displayCards(arr) {
-        cardContainer.innerHTML = ''
-        for (let i = 0; i < arr.length; i++) {
-          createRandomCard(arr[i])
-        }
-      }
-
-      form.addEventListener('submit', submitHandler)
-    </script>
+    <script src="../main.js"></script>
   </body>
 </html>
